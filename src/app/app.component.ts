@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
@@ -8,39 +8,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  template: `
-    <header>
-      <h1>YouTube Player</h1>
-      <div class="search-bar">
-        <input type="text" placeholder="Rechercher ou coller une URL YouTube..." [(ngModel)]="videoUrl" />
-        <button (click)="playVideo()">Lire</button>
-      </div>
-    </header>
-
-    <main>
-      <div class="video-container" *ngIf="embedUrl">
-        <iframe
-          [src]="embedUrl"
-          width="560"
-          height="315"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-        <p class="video-title">{{ currentVideoTitle }}</p>
-      </div>
-
-      <div class="history">
-        <h2>Historique</h2>
-        <p *ngFor="let video of history">{{ video.title }}</p>
-      </div>
-    </main>
-  `,
+  templateUrl: './app.component.html',
+  styleUrls: ['../styles.css']
 })
 export class AppComponent {
-  title = 'youtube-player';  // Ajouté pour le test
+  title = 'youtube-player';
   videoUrl = '';
   embedUrl: SafeResourceUrl | null = null;
   currentVideoTitle = '';
@@ -68,5 +40,10 @@ export class AppComponent {
     const regExp = /(?:youtube\.com\/.*v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(regExp);
     return match ? match[1] : null;
+  }
+
+  replayVideo(video: { id: string, title: string }) {
+    this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.id}`);
+    this.currentVideoTitle = video.title;
   }
 }
