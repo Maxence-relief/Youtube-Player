@@ -1,0 +1,33 @@
+<header>
+  <h1>YouTube Player</h1>
+  <div class="search-bar">
+    <input [(ngModel)]="videoUrl" placeholder="Rechercher ou coller une URL YouTube..." />
+    <button (click)="playVideo()">Lire</button>
+  </div>
+</header>
+
+<main>
+  <div class="video-container">
+  <iframe *ngIf="embedUrl" [src]="embedUrl" allowfullscreen></iframe>
+  <p class="video-title">{{ currentVideoTitle }}</p>
+
+  <!-- Bloc Like / Dislike sous la vidéo -->
+  <div class="video-actions">
+    <button 
+      class="like-button" 
+      [class.active]="likeStatus === 'like'"
+      (click)="setLike()"
+    >👍 Like</button>
+    <button 
+      class="dislike-button" 
+      [class.active]="likeStatus === 'dislike'"
+      (click)="setDislike()"
+    >👎 Dislike</button>
+  </div>
+</div>
+
+<app-history
+  [history]="history"
+  (videoSelected)="replayVideo($event)">
+</app-history>
+</main>

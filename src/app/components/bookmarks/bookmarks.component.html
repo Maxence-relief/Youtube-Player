@@ -1,0 +1,8 @@
+<div class="bookmarks">
+  <h2>Favoris</h2>
+  <div *ngFor="let bookmark of bookmarks" 
+       (click)="selectBookmark(bookmark)"
+       class="bookmark-item">
+    {{ bookmark.title }}
+  </div>
+</div>

@@ -1,0 +1,292 @@
+/* Fond general sombre */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* En-tete avec le titre et la barre de recherche */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Titre aligne a gauche */
+  padding: 16px 32px;
+  background-color: #1a1a1a;
+  gap: 16px;
+}
+
+/* Titre du lecteur */
+header h1 {
+  font-size: 24px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Zone de recherche et bouton integre */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #222;
+  border-radius: 15px;
+  overflow: hidden;
+  min-width: 150px; /* Largeur minimale */
+  max-width: 600px; /* Largeur maximale */
+  width: auto; /* S'adapte au contenu */
+  flex-grow: 1; /* Prend l'espace disponible */
+  margin: 0 450px; /* Marge pour separer des autres elements */
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: white;
+  outline: none;
+  min-width: 110px; /* Largeur minimale du champ */
+}
+
+.search-bar button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 100%;
+}
+
+/* Effet hover : gris vers rouge */
+.search-bar button:hover {
+  background-color: red;
+}
+
+/* Contenu principal : video + historique */
+main {
+  display: flex;
+  gap: 32px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+/* Conteneur video */
+.video-container {
+  flex: 3;
+  max-width: 1443px;
+  margin: 0 auto;
+  background-color: #111;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  background: black;
+  display: block; /* Pour enlever un petit espace blanc sous l'iframe */
+  border-radius: 10px;
+}
+
+/* Titre de la video sous l'iframe */
+.video-title {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+/* Historique a droite */
+.history {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.history h2 {
+  margin-top: 0;
+  font-size: 18px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+/* Carte description sous la video */
+.video-description-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(to right, #1f1f1f, #222);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.video-description-left {
+  flex: 1;
+}
+
+.video-title {
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.video-description {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.read-more {
+  color: #3ea6ff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.video-description-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #ccc;
+  padding-left: 2rem;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Historique avec effet carte */
+.history-card {
+  background: linear-gradient(to right, #1f1f1f, #222);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-card:hover {
+  background-color: #2a2a2a;
+  transform: perspective(800px) translateZ(6px);
+}
+
+.like-dislike-indicator {
+  font-size: 1.5rem;
+  user-select: none;
+}
+
+.history-card.liked .like-dislike-indicator .like {
+  color: #00ff66; /* vert pour like */
+}
+
+.history-card.disliked .like-dislike-indicator .dislike {
+  color: #ff5555; /* rouge pour dislike */
+}
+
+.history-card.liked {
+  border-left: 4px solid green;
+  background-color: #e6ffe6;
+}
+
+.history-card.disliked {
+  border-left: 4px solid red;
+  background-color: #ffe6e6;
+}
+
+
+.video-info-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f1f1f;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.video-info-left h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.video-info-right span {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s;
+}
+
+.video-info-right span:hover {
+  color: #fff;
+}
+
+:root {
+  --primary-red: #e53935;
+  --card-bg: #1e1e1e;
+  --border-color: #333;
+}
+
+.like-dislike-buttons button {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.like-dislike-buttons button.active {
+  background-color: #3ea6ff; /* bleu quand actif */
+}
+
+.like-dislike-buttons button:hover {
+  background-color: #555;
+}
+
+/* Point colore a cote du titre dans l'historique */
+.status-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 10px;
+  vertical-align: middle;
+  background-color: transparent;
+}
+
+.status-dot.liked {
+  background-color: #3ea6ff; /* bleu */
+}
+
+.status-dot.disliked {
+  background-color: #ff3e3e; /* rouge */
+}
+
+
+/* Conteneur pour les boutons sous la video */
+.video-actions {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}

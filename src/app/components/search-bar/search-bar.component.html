@@ -1,0 +1,15 @@
+<div class="app-container">
+  <!-- En-tête -->
+  <header class="app-header">
+    <h1>YouTube Player</h1>
+  </header>
+
+<div class="search-bar" [class.slide-top-error]="slideTopError">
+  <input 
+    type="text" 
+    [(ngModel)]="videoUrl" 
+    placeholder="Entrez l'URL YouTube..."
+    (keyup.enter)="playVideo()"
+  >
+  <button (click)="playVideo()">▶</button>
+</div>

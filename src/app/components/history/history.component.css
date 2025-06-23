@@ -1,0 +1,121 @@
+.history {
+  padding: 1.5rem;
+  background-color: transparent;
+  border-radius: 12px;
+}
+
+.history h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+  color: #fff;
+}
+
+.history-item {
+  padding: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-item:hover {
+  background-color: #2a2a2a;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.vote-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.vote-btn {
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.2rem 0.5rem;
+  transition: all 0.2s;
+}
+
+.like-btn:hover {
+  color: #00ff00;
+}
+
+.dislike-btn:hover {
+  color: var(--primary-red);
+}
+
+.liked {
+  color: #00ff00;
+}
+
+.disliked {
+  color: var(--primary-red);
+}
+
+.history-card {
+  background: linear-gradient(to right, #1f1f1f, #222);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.history-card:hover {
+  background-color: #2a2a2a;
+  transform: perspective(800px) translateZ(6px);
+}
+
+/* Partie gauche */
+.history-left span {
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-card.liked {
+  border-left: 4px solid green;
+}
+
+.history-card.disliked {
+  border-left: 4px solid red;
+}
+
+
+.history-card.liked::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  background-color: #00ff66;
+  border-radius: 4px 0 0 4px;
+}
+
+.history-card.disliked::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 4px;
+  background-color: #ff5555;
+  border-radius: 4px 0 0 4px;
+}
+
+.history-card {
+  position: relative; /* necessaire pour les ::before */
+}
