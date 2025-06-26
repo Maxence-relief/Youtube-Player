@@ -6,6 +6,26 @@
   <base href="/" />
 </head>
 <body>
+  <button id="theme-toggle" aria-label="Changer de mode"></button>
   <app-root></app-root>
+  <script>
+    // Animation du bouton et changement de thème
+    const btn = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let darkMode = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark);
+
+    function setTheme(dark) {
+      document.documentElement.classList.toggle('light-mode', !dark);
+      document.documentElement.classList.toggle('dark-mode', dark);
+      btn.classList.toggle('active', dark);
+      btn.innerHTML = dark
+        ? '<span style="font-size:1.2em;">🌙</span>'
+        : '<span style="font-size:1.2em;">☀️</span>';
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    btn.onclick = () => setTheme(!(document.documentElement.classList.contains('dark-mode')));
+    setTheme(darkMode);
+  </script>
 </body>
 </html>

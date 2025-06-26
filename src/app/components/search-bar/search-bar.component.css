@@ -4,7 +4,8 @@
   width: 100%;
   max-width: 800px;
   margin: 1.5rem auto 0;
-  background-color: var(--card-bg);
+  background-color: var(--search-bg, #222);
+  transition: background-color 0.3s;
   border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -14,27 +15,28 @@
   flex: 1;
   padding: 1rem 1.5rem;
   border: none;
+  color: var(--text);
   background: transparent;
-  color: white;
+  transition: color 0.3s;
   font-size: 1.1rem;
   outline: none;
 }
 
 .search-bar button {
-  background-color: var(--primary-red);
-  color: white;
+  background-color: var(--search-btn-bg, #333);
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
   border: none;
   padding: 0 2rem;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
 .search-bar button:hover {
-  background-color: #cc0000;
+  background-color: var(--primary-red, red);
 }
 
-
+/* Animations d'erreur */
 @keyframes shake {
   0% { transform: translateX(0); }
   20% { transform: translateX(-8px); }
@@ -54,16 +56,8 @@
 }
 
 @keyframes slide-top-error {
-  0% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-30px);
-  }
-  60% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-30px); }
+  60% { transform: translateY(0); }
+  100% { transform: translateY(0); }
 }

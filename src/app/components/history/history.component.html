@@ -1,20 +1,7 @@
 <aside class="history">
   <h2>Historique</h2>
 
-  <div *ngFor="let video of history"
-     (click)="selectVideo(video)"
-     [class.liked]="video.liked"
-     [class.disliked]="video.disliked"
-     class="history-card">
-
-    <div class="history-left">
-      <span>{{ video.title }}</span>
-    </div>
-
-    <div class="history-right vote-buttons" (click)="$event.stopPropagation()">
-      <button class="vote-btn like-btn" (click)="toggleLike(video)">↑</button>
-      <button class="vote-btn dislike-btn" (click)="toggleDislike(video)">↓</button>
-    </div>
-
+  <div *ngFor="let video of history" class="history-card" (click)="videoSelected.emit(video)">
+    <span>{{ video.title }}</span>
   </div>
 </aside>

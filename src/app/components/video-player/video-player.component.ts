@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Ajoute ceci
 import { YoutubeTitleService } from './services/youtube-title.service';
 
 @Component({
   selector: 'app-video-player',
+  standalone: true, // si standalone
+  imports: [CommonModule], // Ajoute ceci
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.css']
 })
@@ -11,9 +14,8 @@ export class VideoPlayerComponent {
   videoTitle: string | null = null;           // Titre de la vidéo
   videoDescription: string | null = null;     // Description
   errorMessage: string | null = null;         // Message d'erreur si titre non trouvé
-  likeStatus: 'like' | 'dislike' | null = null; // Statut like/dislike
 
-  // Historique simple
+  // Historique simple (sans liked/disliked)
   videoHistory = [
     { title: 'Vidéo 1', liked: false, disliked: false },
     { title: 'Vidéo 2', liked: false, disliked: false },
@@ -28,7 +30,6 @@ export class VideoPlayerComponent {
         this.videoTitle = response.title;
         this.errorMessage = null;
 
-        // Exemple : ajouter dans l'historique si besoin
         this.videoHistory.push({
           title: response.title,
           liked: false,
@@ -53,27 +54,15 @@ export class VideoPlayerComponent {
     return match ? match[1] : '';
   }
 
-  onLike() {
-    this.likeStatus = this.likeStatus === 'like' ? null : 'like';
-    if (this.videoHistory[this.currentVideoIndex]) {
-      this.videoHistory[this.currentVideoIndex].liked = this.likeStatus === 'like';
-      this.videoHistory[this.currentVideoIndex].disliked = false;
-    }
+  toggleLike(index: number) {
+    const video = this.videoHistory[index];
+    video.liked = !video.liked;
+    if (video.liked) video.disliked = false;
   }
 
-  onDislike() {
-    this.likeStatus = this.likeStatus === 'dislike' ? null : 'dislike';
-    if (this.videoHistory[this.currentVideoIndex]) {
-      this.videoHistory[this.currentVideoIndex].liked = false;
-      this.videoHistory[this.currentVideoIndex].disliked = this.likeStatus === 'dislike';
-    }
-  }
-
-  get liked(): boolean {
-    return this.likeStatus === 'like';
-  }
-
-  get disliked(): boolean {
-    return this.likeStatus === 'dislike';
+  toggleDislike(index: number) {
+    const video = this.videoHistory[index];
+    video.disliked = !video.disliked;
+    if (video.disliked) video.liked = false;
   }
 }

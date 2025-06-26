@@ -16,7 +16,7 @@ export class AppComponent {
   embedUrl: SafeResourceUrl | null = null;
   currentVideoTitle = '';
   history: { id: string, title: string, liked?: boolean, disliked?: boolean }[] = [];
-  likeStatus: 'like' | 'dislike' | null = null;
+  slideTopError = false;
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -30,8 +30,6 @@ export class AppComponent {
       this.history.push({
         id: videoId,
         title: newTitle,
-        liked: false,
-        disliked: false
       });
     }
   } else {
@@ -51,12 +49,4 @@ export class AppComponent {
     this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.id}`);
     this.currentVideoTitle = video.title;
   }
-
-  setLike() {
-  this.likeStatus = this.likeStatus === 'like' ? null : 'like';
-}
-
-  setDislike() {
-  this.likeStatus = this.likeStatus === 'dislike' ? null : 'dislike';
-}
 }

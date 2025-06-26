@@ -5,47 +5,5 @@
     [src]="embedUrl" 
     allowfullscreen>
   </iframe>
-  <div *ngIf="!embedUrl" class="video-placeholder">
-    Selectionnez une video
-  </div>
 </div>
 
-<!-- Boutons Like / Dislike -->
-<div class="like-dislike-buttons" *ngIf="videoTitle">
-  <button (click)="onLike()" [class.active]="liked">👍 Like</button>
-  <button (click)="onDislike()" [class.active]="disliked">👎 Dislike</button>
-</div>
-
-<!-- Historique des videos -->
-<ul class="video-history" *ngIf="videoHistory.length > 0">
-  <li *ngFor="let video of videoHistory">
-    {{ video.title }}
-    <span 
-      class="status-dot" 
-      [class.liked]="video.liked" 
-      [class.disliked]="video.disliked">
-    </span>
-  </li>
-</ul>
-
-<!-- Description style YouTube -->
-<div class="video-description-card" *ngIf="videoTitle">
-  <div class="video-description-left">
-    <h2 class="video-title">
-      {{ videoTitle }}
-      <span 
-        class="status-dot" 
-        [class.liked]="liked" 
-        [class.disliked]="disliked">
-      </span>
-    </h2>
-    <p class="video-description">
-      Simple petite description pour un test.
-      <a class="read-more">afficher plus</a>
-    </p>
-  </div>
-  <div class="video-description-right">
-    <div class="stats">👍 3,2k</div>
-    <div class="stats">👎 120</div>
-  </div>
-</div>

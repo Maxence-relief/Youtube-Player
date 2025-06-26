@@ -4,7 +4,7 @@ body, html {
   padding: 0;
   height: 100%;
   background-color: #111;
-  color: white;
+  color: lab(100% 0.01 -0.01);
   font-family: Arial, sans-serif;
 }
 
@@ -77,7 +77,8 @@ main {
   flex: 3;
   max-width: 1443px;
   margin: 0 auto;
-  background-color: #111;
+  background: (to right, #1f1f1f, #fafafa);
+  transition: background-color 0.3s;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -111,60 +112,6 @@ main {
   padding-bottom: 4px;
 }
 
-/* Carte description sous la video */
-.video-description-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 1rem;
-  padding: 1.5rem;
-  background: linear-gradient(to right, #1f1f1f, #222);
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  color: #fff;
-}
-
-.video-description-left {
-  flex: 1;
-}
-
-.video-title {
-  font-size: 1.4rem;
-  margin: 0 0 0.5rem 0;
-}
-
-.video-description {
-  font-size: 0.95rem;
-  color: #ccc;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.read-more {
-  color: #3ea6ff;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.read-more:hover {
-  text-decoration: underline;
-}
-
-.video-description-right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 1rem;
-  color: #ccc;
-  padding-left: 2rem;
-}
-
-.stats {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
 /* Historique avec effet carte */
 .history-card {
   background: linear-gradient(to right, #1f1f1f, #222);
@@ -185,108 +132,114 @@ main {
   transform: perspective(800px) translateZ(6px);
 }
 
-.like-dislike-indicator {
-  font-size: 1.5rem;
-  user-select: none;
-}
-
-.history-card.liked .like-dislike-indicator .like {
-  color: #00ff66; /* vert pour like */
-}
-
-.history-card.disliked .like-dislike-indicator .dislike {
-  color: #ff5555; /* rouge pour dislike */
-}
-
-.history-card.liked {
-  border-left: 4px solid green;
-  background-color: #e6ffe6;
-}
-
-.history-card.disliked {
-  border-left: 4px solid red;
-  background-color: #ffe6e6;
-}
-
-
-.video-info-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #1f1f1f;
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  margin-top: 1rem;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-}
-
-.video-info-left h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  color: #fff;
-}
-
-.video-info-right span {
-  font-size: 1.5rem;
-  margin-left: 1rem;
-  cursor: pointer;
-  color: #ccc;
-  transition: color 0.2s;
-}
-
-.video-info-right span:hover {
-  color: #fff;
-}
-
 :root {
   --primary-red: #e53935;
   --card-bg: #1e1e1e;
   --border-color: #333;
 }
 
-.like-dislike-buttons button {
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 6px;
-  background-color: #333;
-  color: white;
-  transition: background-color 0.3s;
-}
-
-.like-dislike-buttons button.active {
-  background-color: #3ea6ff; /* bleu quand actif */
-}
-
-.like-dislike-buttons button:hover {
-  background-color: #555;
-}
-
-/* Point colore a cote du titre dans l'historique */
-.status-dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-left: 10px;
-  vertical-align: middle;
-  background-color: transparent;
-}
-
-.status-dot.liked {
-  background-color: #3ea6ff; /* bleu */
-}
-
-.status-dot.disliked {
-  background-color: #ff3e3e; /* rouge */
-}
-
-
 /* Conteneur pour les boutons sous la video */
 .video-actions {
   margin-top: 10px;
   display: flex;
   align-items: center;
+}
+
+.titre {
+  background: #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.titre:hover {
+  background: #e0e0e0;
+}
+
+.fleche {
+  transition: transform 0.3s;
+}
+
+.titre.active .fleche {
+  transform: rotate(180deg);
+}
+
+.contenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: #fafafa;
+  padding: 0 10px;
+}
+
+.titre.active + .contenu {
+  max-height: 200px;
+  padding: 10px;
+}
+
+/* Bouton mode sombre/clair */
+#theme-toggle {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 1000;
+  background: #222;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s, transform 0.3s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#theme-toggle:hover {
+  background: #fafafa;
+  transform: rotate(20deg) scale(1.08);
+}
+#theme-toggle.active {
+  background: #fff;
+  color: #222;
+}
+
+/* Thèmes */
+:root {
+  --bg: #111;
+  --text: #fff;
+  --search-bg: #222;
+  --search-btn-bg: #333;
+  --video-bg: #111;
+  --video-iframe-bg: #000;
+  --history-bg: transparent;
+  --history-text: #ccc;
+  --history-hover: #2a2a2a;
+  --card-bg: #1f1f1f;
+  --card-bg2: #222;
+  --primary-red: #e53935;
+}
+.light-mode {
+  --bg: #fafafa;
+  --text: #ffffff;
+  --search-bg: #fff;
+  --search-btn-bg: #e0e0e0;
+  --video-bg: #fff;
+  --video-iframe-bg: #fafafa;
+  --history-bg: #f5f5f5;
+  --history-text: #222;
+  --history-hover: #ffeaea;
+  --card-bg: #fff;
+  --card-bg2: #f0f0f0;
+  --primary-red: #e53935;
+}
+.dark-mode, body:not(.light-mode) {
+  background: var(--bg);
+  color: var(--text);
 }
