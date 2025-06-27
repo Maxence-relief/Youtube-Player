@@ -1,5 +1,4 @@
 <aside class="history">
-  <h2>Historique</h2>
 
   <div *ngFor="let video of history" class="history-card" (click)="videoSelected.emit(video)">
     <span>{{ video.title }}</span>

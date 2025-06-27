@@ -17,6 +17,7 @@ export class AppComponent {
   currentVideoTitle = '';
   history: { id: string, title: string, liked?: boolean, disliked?: boolean }[] = [];
   slideTopError = false;
+  isHistoryOpen = false;
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -48,5 +49,9 @@ export class AppComponent {
   replayVideo(video: { id: string, title: string }) {
     this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.id}`);
     this.currentVideoTitle = video.title;
+  }
+
+  toggleHistory() {
+    this.isHistoryOpen = !this.isHistoryOpen;
   }
 }

@@ -16,8 +16,17 @@
     <iframe *ngIf="embedUrl" [src]="embedUrl" allowfullscreen></iframe>
     <p class="video-title">{{ currentVideoTitle }}</p>
   </div>
-<app-history
-  [history]="history"
-  (videoSelected)="replayVideo($event)">
-</app-history>
+
+  <div class="history-dropdown-container">
+    <div class="history-toggle" (click)="toggleHistory()">
+      <span class="history-arrow" [class.open]="isHistoryOpen">&#9660;</span>
+      <h3>Historique</h3>
+    </div>
+    <div class="history-dropdown-list" [class.show]="isHistoryOpen">
+      <app-history
+        [history]="history"
+        (videoSelected)="replayVideo($event)">
+      </app-history>
+    </div>
+  </div>
 </main>

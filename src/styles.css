@@ -14,7 +14,7 @@ header {
   align-items: center;
   justify-content: flex-start; /* Titre aligne a gauche */
   padding: 16px 32px;
-  background-color: #1a1a1a;
+  background-color: #222 !important;
   gap: 16px;
 }
 
@@ -23,6 +23,8 @@ header h1 {
   font-size: 24px;
   margin: 0;
   white-space: nowrap;
+  color: #fff !important;
+  transition: color 0.3s;
 }
 
 /* Zone de recherche et bouton integre */
@@ -227,7 +229,7 @@ main {
 }
 .light-mode {
   --bg: #fafafa;
-  --text: #ffffff;
+  --text: #333;
   --search-bg: #fff;
   --search-btn-bg: #e0e0e0;
   --video-bg: #fff;
@@ -242,4 +244,58 @@ main {
 .dark-mode, body:not(.light-mode) {
   background: var(--bg);
   color: var(--text);
+}
+
+/* Historique déroulant */
+.history-dropdown-container {
+  width: 100%;
+  max-width: 350px;
+  margin: 24px auto 0;
+  font-family: Arial, sans-serif;
+}
+
+.history-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 8px 0;
+}
+
+.history-arrow {
+  transition: transform 0.3s;
+  display: inline-block;
+  font-size: 1.2em;
+}
+
+.history-arrow.open {
+  transform: rotate(180deg); /* flèche vers le haut ▲ */
+}
+
+.history-dropdown-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  overflow-y: auto;
+}
+
+.history-dropdown-list.show {
+  max-height: 600px; /* Limite la hauteur visible */
+  overflow-y: auto;  /* Active le scroll si besoin */
+}
+
+/* Couleur de la flèche et du titre Historique */
+.history-toggle,
+.history-arrow {
+  color: var(--text);
+  transition: color 0.3s;
+}
+
+.history-toggle h3,
+.history-toggle span {
+  color: var(--text);
+  transition: color 0.3s;
 }
