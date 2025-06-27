@@ -4,8 +4,8 @@ import { YoutubeTitleService } from './services/youtube-title.service';
 
 @Component({
   selector: 'app-video-player',
-  standalone: true, // si standalone
-  imports: [CommonModule], // Ajoute ceci
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.css']
 })
