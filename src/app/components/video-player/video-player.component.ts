@@ -15,8 +15,8 @@ export class VideoPlayerComponent {
   videoDescription: string | null = null;     // Description
   errorMessage: string | null = null;         // Message d'erreur si titre non trouvé
 
-  videoHistory: { title: string; liked: boolean; disliked: boolean }[] = []; // Ajoute cette ligne
-
+  videoHistory: { title: string; liked: boolean; disliked: boolean }[] = [];
+  
   currentVideoIndex = 0;
 
   constructor(private youtubeTitleService: YoutubeTitleService) {}
