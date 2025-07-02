@@ -1,14 +1,16 @@
 <header>
   <h1>YouTube Player</h1>
+  <button (click)="changeLang('fr')">FR</button>
+  <button (click)="changeLang('en')">EN</button>
   <div class="search-bar" [class.slide-top-error]="slideTopError">
-  <input 
-    type="text" 
-    [(ngModel)]="videoUrl" 
-    placeholder="Entrez l'URL YouTube..."
-    (keyup.enter)="playVideo()"
-  >
-  <button (click)="playVideo()">▶</button>
-</div>
+    <input 
+      type="text" 
+      [(ngModel)]="videoUrl" 
+      [placeholder]="t('ENTER_URL')"
+      (keyup.enter)="playVideo()"
+    >
+    <button (click)="playVideo()">▶</button>
+  </div>
 </header>
 
 <main>
@@ -20,7 +22,7 @@
   <div class="history-dropdown-container">
     <div class="history-toggle" (click)="toggleHistory()">
       <span class="history-arrow" [class.open]="isHistoryOpen">&#9660;</span>
-      <h3>Historique</h3>
+      <h3>{{ t('HISTORY') }}</h3>
     </div>
     <div class="history-dropdown-list" [class.show]="isHistoryOpen">
       <app-history

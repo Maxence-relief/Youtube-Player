@@ -51,9 +51,3 @@ body, html {
   background-color: var(--video-bg, #111);
   transition: background-color 0.3s;
 }
-
-button.active {
-  font-weight: bold;
-  color: #fff;
-  background: #3ea6ff;
-}
